@@ -16,12 +16,6 @@ var product1 = document.getElementById('product1').textContent
         document.getElementById('price3').textContent.replace('Php', '').trim()
       )
 
-      var product3 = document.getElementById('product3').textContent
-      var qty3 = document.getElementById('qty3')
-      var price3 = parseFloat(
-        document.getElementById('price3').textContent.replace('Php', '').trim()
-      )
-
       var product4 = document.getElementById('product4').textContent
       var qty4 = document.getElementById('qty4')
       var price4 = parseFloat(
@@ -31,9 +25,9 @@ var product1 = document.getElementById('product1').textContent
       var product5 = document.getElementById('product5').textContent
       var qty5 = document.getElementById('qty5')
       var price5 = parseFloat(
-        document.getElementById('price3').textContent.replace('Php', '').trim()
+        document.getElementById('price5').textContent.replace('Php', '').trim()
       )
-
+  
       var product6 = document.getElementById('product6').textContent
       var qty6 = document.getElementById('qty6')
       var price6 = parseFloat(
@@ -99,12 +93,11 @@ var product1 = document.getElementById('product1').textContent
             ' ------ ' +
             product4 +
             ' ------ ' +
-            parseFloat(qty4.value) * price4  +
+            parseFloat(qty4.value) * price4 +
             '\n'
           carts.textContent += order
           totalPrice += parseFloat(qty4.value) * price4
         }
-
         if (parseFloat(qty5.value) > 0) {
           var order =
             qty5.value.toString() +
@@ -118,13 +111,12 @@ var product1 = document.getElementById('product1').textContent
           carts.textContent += order
           totalPrice += parseFloat(qty5.value) * price5
         }
-
-
-         if (parseFloat(qty6.value) > 0) {
+            
+        if (parseFloat(qty6.value) > 0) {
           var order =
             qty6.value.toString() +
             ' pc/s x Php ' +
-            price6  +
+            price6 +
             ' ------ ' +
             product6 +
             ' ------ ' +
@@ -132,9 +124,8 @@ var product1 = document.getElementById('product1').textContent
             '\n'
           carts.textContent += order
           totalPrice += parseFloat(qty6.value) * price6
-         }
-
-
+        }
+  
 
         total.value = 'Php ' + totalPrice.toFixed(2)
 
