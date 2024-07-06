@@ -1,148 +1,85 @@
-var product1 = document.getElementById('product1').textContent
-      var qty1 = document.getElementById('qty1')
-      var price1 = parseFloat(
-        document.getElementById('price1').textContent.replace('Php', '').trim()
-      )
+function addOrder() {
+    var orders = "";
+    var totalAmount = 0;
 
-      var product2 = document.getElementById('product2').textContent
-      var qty2 = document.getElementById('qty2')
-      var price2 = parseFloat(
-        document.getElementById('price2').textContent.replace('Php', '').trim()
-      )
+    if (parseFloat(qty1.value) > 0) {
+        var order1 = qty1.value + " pc/s x " + price1.textContent + " - " + product1.textContent + " - Php " + (parseFloat(qty1.value) * parseFloat(price1.textContent)).toFixed(2) + "\n";
+        orders += order1;
+        totalAmount += parseFloat(qty1.value) * parseFloat(price1.textContent);
+    }
 
-      var product3 = document.getElementById('product3').textContent
-      var qty3 = document.getElementById('qty3')
-      var price3 = parseFloat(
-        document.getElementById('price3').textContent.replace('Php', '').trim()
-      )
+    if (parseFloat(qty2.value) > 0) {
+        var order2 = qty2.value + " pc/s x " + price2.textContent + " - " + product2.textContent + " - Php " + (parseFloat(qty2.value) * parseFloat(price2.textContent)).toFixed(2) + "\n";
+        orders += order2;
+        totalAmount += parseFloat(qty2.value) * parseFloat(price2.textContent);
+    }
 
-      var product4 = document.getElementById('product4').textContent
-      var qty4 = document.getElementById('qty4')
-      var price4 = parseFloat(
-        document.getElementById('price4').textContent.replace('Php', '').trim()
-      )
+    if (parseFloat(qty3.value) > 0) {
+        var order3 = qty3.value + " pc/s x " + price3.textContent + " - " + product3.textContent + " - Php " + (parseFloat(qty3.value) * parseFloat(price3.textContent)).toFixed(2) + "\n";
+        orders += order3;
+        totalAmount += parseFloat(qty3.value) * parseFloat(price3.textContent);
+    }
 
-      var product5 = document.getElementById('product5').textContent
-      var qty5 = document.getElementById('qty5')
-      var price5 = parseFloat(
-        document.getElementById('price5').textContent.replace('Php', '').trim()
-      )
-  
-      var product6 = document.getElementById('product6').textContent
-      var qty6 = document.getElementById('qty6')
-      var price6 = parseFloat(
-        document.getElementById('price6').textContent.replace('Php', '').trim()
-      )
+    if (parseFloat(qty4.value) > 0) {
+        var order4 = qty4.value + " pc/s x " + price4.textContent + " - " + product4.textContent + " - Php " + (parseFloat(qty4.value) * parseFloat(price4.textContent)).toFixed(2) + "\n";
+        orders += order4;
+        totalAmount += parseFloat(qty4.value) * parseFloat(price4.textContent);
+    }
 
-      var carts = document.getElementById('carts')
-      var total = document.getElementById('total')
-      var cash = document.getElementById('cash')
-      var change = document.getElementById('change')
+    if (parseFloat(qty5.value) > 0) {
+        var order5 = qty5.value + " pc/s x " + price5.textContent + " - " + product5.textContent + " - Php " + (parseFloat(qty5.value) * parseFloat(price5.textContent)).toFixed(2) + "\n";
+        orders += order5;
+        totalAmount += parseFloat(qty5.value) * parseFloat(price5.textContent);
+    }
 
-      function addOrder() {
-        carts.textContent = ''
-        var totalPrice = 0
+    if (parseFloat(qty6.value) > 0) {
+        var order6 = qty6.value + " pc/s x " + price6.textContent + " - " + product6.textContent + " - Php " + (parseFloat(qty6.value) * parseFloat(price6.textContent)).toFixed(2) + "\n";
+        orders += order6;
+        totalAmount += parseFloat(qty6.value) * parseFloat(price6.textContent);
+    }
 
-        if (parseFloat(qty1.value) > 0) {
-          var order =
-            qty1.value.toString() +
-            ' pc/s x Php ' +
-            price1 +
-            ' ------ ' +
-            product1 +
-            ' ------ ' +
-            parseFloat(qty1.value) * price1 +
-            '\n'
-          carts.textContent += order
-          totalPrice += parseFloat(qty1.value) * price1
-        }
+    carts.textContent = orders;
+    total.value = "Php " + totalAmount.toFixed(2);
+    calculateChange();
+}
 
-        if (parseFloat(qty2.value) > 0) {
-          var order =
-            qty2.value.toString() +
-            ' pc/s x Php ' +
-            price2 +
-            ' ------ ' +
-            product2 +
-            ' ------ ' +
-            parseFloat(qty2.value) * price2 +
-            '\n'
-          carts.textContent += order
-          totalPrice += parseFloat(qty2.value) * price2
-        }
+function calculateChange() {
+    var totalAmount = parseFloat(total.value.replace("Php ", ""));
+    var cashAmount = parseFloat(cash.value);
+    if (cashAmount >= totalAmount) {
+        change.value = "Php " + (cashAmount - totalAmount).toFixed(2);
+    } else {
+        change.value = "Insufficient Cash";
+    }
+}
 
-        if (parseFloat(qty3.value) > 0) {
-          var order =
-            qty3.value.toString() +
-            ' pc/s x Php ' +
-            price3 +
-            ' ------ ' +
-            product3 +
-            ' ------ ' +
-            parseFloat(qty3.value) * price3 +
-            '\n'
-          carts.textContent += order
-          totalPrice += parseFloat(qty3.value) * price3
-        }
+function finishOrder() {
+    var totalAmount = parseFloat(total.value.replace("Php ", ""));
+    var cashAmount = parseFloat(cash.value);
 
-        if (parseFloat(qty4.value) > 0) {
-          var order =
-            qty4.value.toString() +
-            ' pc/s x Php ' +
-            price4 +
-            ' ------ ' +
-            product4 +
-            ' ------ ' +
-            parseFloat(qty4.value) * price4 +
-            '\n'
-          carts.textContent += order
-          totalPrice += parseFloat(qty4.value) * price4
-        }
-        if (parseFloat(qty5.value) > 0) {
-          var order =
-            qty5.value.toString() +
-            ' pc/s x Php ' +
-            price5 +
-            ' ------ ' +
-            product5 +
-            ' ------ ' +
-            parseFloat(qty5.value) * price5 +
-            '\n'
-          carts.textContent += order
-          totalPrice += parseFloat(qty5.value) * price5
-        }
-            
-        if (parseFloat(qty6.value) > 0) {
-          var order =
-            qty6.value.toString() +
-            ' pc/s x Php ' +
-            price6 +
-            ' ------ ' +
-            product6 +
-            ' ------ ' +
-            parseFloat(qty6.value) * price6 +
-            '\n'
-          carts.textContent += order
-          totalPrice += parseFloat(qty6.value) * price6
-        }
-  
+    if (cashAmount >= totalAmount && totalAmount > 0) {
+        alert("Order Successful!\n\n" + "Products Purchased:\n" + carts.textContent + "\nTHANK YOU !");
+        carts.textContent = "";
+        total.value = "";
+        cash.value = "";
+        change.value = "";
+        qty1.value = "";
+        qty2.value = "";
+        qty3.value = "";
+        qty4.value = "";
+        qty5.value = "";
+        qty6.value = "";
+    } else if (totalAmount == 0) {
+        alert("Please add items to your order.");
+    } else {
+        alert("Insufficient Cash.");
+    }
+}
 
-        total.value = 'Php ' + totalPrice.toFixed(2)
-
-        cash.addEventListener('keyup', function () {
-          var cashTendered = parseFloat(cash.value)
-          var changeAmount = cashTendered - totalPrice
-          if (!isNaN(changeAmount) && changeAmount >= 0) {
-            change.value = 'Php ' + changeAmount.toFixed(2)
-          } else {
-            change.value = 'Php 0.00'
-          }
-        })
-      }
-
-      qty1.addEventListener('keyup', addOrder)
-      qty2.addEventListener('keyup', addOrder)
-      qty3.addEventListener('keyup', addOrder)
-      qty4.addEventListener('keyup', addOrder)
-      qty5.addEventListener('keyup', addOrder)
-      qty6.addEventListener('keyup', addOrder)
+qty1.addEventListener("keyup", addOrder);
+qty2.addEventListener("keyup", addOrder);
+qty3.addEventListener("keyup", addOrder);
+qty4.addEventListener("keyup", addOrder);
+qty5.addEventListener("keyup", addOrder);
+qty6.addEventListener("keyup", addOrder);
+cash.addEventListener("keyup", calculateChange);
